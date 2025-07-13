@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainSnipe - Pro Crypto Analytics Platform</title>
+    <meta name="description" content="Track crypto wallets, analyze token holders, and monitor real-time blockchain data across Ethereum, Solana, and BSC with ChainSnipe.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-crosshairs"></i>
+                        <div>
+                            <div class="logo-title">ChainSnipe</div>
+                            <div class="logo-subtitle">Pro Crypto Analytics</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span class="status-text">LIVE</span>
+                    </div>
+                    <div class="network-info">
+                        <i class="fas fa-link"></i>
+                        <span>Multi-Chain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#dashboard" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#analytics" class="nav-item">
+                    <i class="fas fa-search"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#portfolio" class="nav-item">
+                    <i class="fas fa-wallet"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#alerts" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tools Section -->
+            <section class="grid grid-cols-1 grid-cols-2 grid-cols-3" style="margin-bottom: 2rem;">
+                <!-- Wallet Tracker -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Wallet Tracker</h3>
+                        <i class="fas fa-wallet card-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <input type="text" id="walletInput" class="input" placeholder="Enter wallet address...">
+                            <i class="fas fa-search input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select id="blockchainSelect" class="select">
+                            <option value="ethereum">Ethereum</option>
+                            <option value="solana">Solana</option>
+                            <option value="bsc">BSC</option>
+                        </select>
+                    </div>
+                    <button onclick="trackWallet()" class="btn">
+                        <i class="fas fa-crosshairs"></i>
+                        Track Wallet
+                    </button>
+                    <div id="walletResult" class="result-container"></div>
+                </div>
+
+                <!-- Token Search -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Token Analysis</h3>
+                        <i class="fas fa-coins card-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <input type="text" id="tokenInput" class="input" placeholder="Enter contract address...">
+                            <i class="fas fa-search input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select id="tokenBlockchain" class="select">
+                            <option value="ethereum">Ethereum</option>
+                            <option value="solana">Solana</option>
+                            <option value="bsc">BSC</option>
+                        </select>
+                    </div>
+                    <button onclick="analyzeToken()" class="btn">
+                        <i class="fas fa-chart-bar"></i>
+                        Analyze Token
+                    </button>
+                    <div id="tokenResult" class="result-container"></div>
+                </div>
+
+                <!-- Market Overview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Market Overview</h3>
+                        <i class="fas fa-chart-line card-icon"></i>
+                    </div>
+                    <div id="marketData">
+                        <div class="loading"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section class="grid grid-cols-1 grid-cols-2" style="margin-bottom: 2rem;">
+                <!-- Portfolio Overview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Portfolio Overview</h3>
+                        <i class="fas fa-chart-pie card-icon"></i>
+                    </div>
+                    <div class="portfolio-stat">
+                        <span class="portfolio-label">Total Value</span>
+                        <span class="portfolio-value">$45,284.21</span>
+                    </div>
+                    <div class="portfolio-stat">
+                        <span class="portfolio-label">24h Change</span>
+                        <span class="portfolio-change">+$2,341.12 (+5.46%)</span>
+                    </div>
+                    <div class="portfolio-breakdown">
+                        <div class="portfolio-item">
+                            <div class="portfolio-item-header">
+                                <span class="portfolio-item-label">Ethereum</span>
+                                <span class="portfolio-item-value">65.2%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65.2%"></div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-item-header">
+                                <span class="portfolio-item-label">Solana</span>
+                                <span class="portfolio-item-value">24.8%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill yellow" style="width: 24.8%"></div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-item-header">
+                                <span class="portfolio-item-label">BSC</span>
+                                <span class="portfolio-item-value">10.0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10.0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Activity</h3>
+                        <i class="fas fa-history card-icon"></i>
+                    </div>
+                    <div id="recentActivity">
+                        <div class="activity-item">
+                            <div class="activity-left">
+                                <div class="activity-icon buy">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-title">Buy ETH</div>
+                                    <div class="activity-hash">0x1a2b3c4d...</div>
+                                </div>
+                            </div>
+                            <div class="activity-right">
+                                <div class="activity-value">+2.45 ETH</div>
+                                <div class="activity-time">2m ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-left">
+                                <div class="activity-icon swap">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-title">Swap SOL → USDC</div>
+                                    <div class="activity-hash">0x5e6f7a8b...</div>
+                                </div>
+                            </div>
+                            <div class="activity-right">
+                                <div class="activity-value">-45.2 SOL</div>
+                                <div class="activity-time">15m ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-left">
+                                <div class="activity-icon transfer">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <div class="activity-title">Transfer USDT</div>
+                                    <div class="activity-hash">0x9c0d1e2f...</div>
+                                </div>
+                            </div>
+                            <div class="activity-right">
+                                <div class="activity-value">-1,250 USDT</div>
+                                <div class="activity-time">1h ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="grid grid-cols-1 grid-cols-2" style="margin-bottom: 2rem;">
+                <!-- Platform Stats -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Platform Statistics</h3>
+                        <i class="fas fa-chart-bar card-icon"></i>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Wallets Tracked</span>
+                        <span class="stat-value">12,847</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Tokens Analyzed</span>
+                        <span class="stat-value yellow">8,342</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Live Transactions</span>
+                        <span class="stat-value">2,891,456</span>
+                    </div>
+                </div>
+
+                <!-- Live Features -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Live Features</h3>
+                        <i class="fas fa-bolt card-icon"></i>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Real-time wallet tracking across multiple blockchains</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Token holder analysis and distribution</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Live transaction monitoring</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Portfolio tracking and analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Multi-blockchain support (ETH, SOL, BSC)</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Real-time price alerts and notifications</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    ChainSnipe - Professional cryptocurrency tracking and analytics platform
+                </div>
+                <div class="footer-sub">
+                    Powered by real-time blockchain data • Multi-chain support • Enterprise-grade security
+                </div>
+                <div class="footer-social">
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-telegram"></i>
+                    <i class="fab fa-discord"></i>
+                    <i class="fab fa-github"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
